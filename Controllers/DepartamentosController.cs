@@ -18,7 +18,7 @@ namespace Universidad.Controllers
             _context = context;
         }
 
-        // GET: Departamentoes
+        // GET: departamentos
         public async Task<IActionResult> Index()
         {
               return _context.Departamentos != null ? 
@@ -26,7 +26,7 @@ namespace Universidad.Controllers
                           Problem("Entity set 'UniversidadContext.Departamentos'  is null.");
         }
 
-        // GET: Departamentoes/Details/5
+        // GET: departamentos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Departamentos == null)
@@ -44,13 +44,13 @@ namespace Universidad.Controllers
             return View(departamento);
         }
 
-        // GET: Departamentoes/Create
+        // GET: departamentos/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Departamentoes/Create
+        // POST: departamentos/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -66,7 +66,7 @@ namespace Universidad.Controllers
             return View(departamento);
         }
 
-        // GET: Departamentoes/Edit/5
+        // GET: departamentos/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Departamentos == null)
@@ -82,7 +82,7 @@ namespace Universidad.Controllers
             return View(departamento);
         }
 
-        // POST: Departamentoes/Edit/5
+        // POST: departamentos/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -117,7 +117,7 @@ namespace Universidad.Controllers
             return View(departamento);
         }
 
-        // GET: Departamentoes/Delete/5
+        // GET: departamentos/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Departamentos == null)
@@ -135,7 +135,7 @@ namespace Universidad.Controllers
             return View(departamento);
         }
 
-        // POST: Departamentoes/Delete/5
+        // POST: departamentos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
