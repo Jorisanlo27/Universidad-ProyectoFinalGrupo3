@@ -9,11 +9,11 @@ using Universidad.Models;
 
 namespace Universidad.Controllers
 {
-    public class DepartamentoesController : Controller
+    public class DepartamentosController : Controller
     {
         private readonly UniversidadContext _context;
 
-        public DepartamentoesController(UniversidadContext context)
+        public DepartamentosController(UniversidadContext context)
         {
             _context = context;
         }
