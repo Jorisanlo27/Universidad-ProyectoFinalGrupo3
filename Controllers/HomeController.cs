@@ -25,7 +25,15 @@ namespace Universidad.Controllers
         {
             return View();
         }
-        public IActionResult Privacy()
+        public IActionResult Profile()
+        {
+            return View();
+        }
+        public IActionResult Contact()
+        {
+            return View();
+        }
+        public IActionResult FAQ()
         {
             return View();
         }
