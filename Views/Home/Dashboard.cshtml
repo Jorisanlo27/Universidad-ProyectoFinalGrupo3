@@ -29,7 +29,7 @@
 									<i class="bi bi-people"></i>
 								</div>
 								<div class="ps-3">
-									<h6>0</h6>
+									<h6 id="ProfesoresCount">0</h6>
 								</div>
 							</div>
 						</div>
@@ -45,7 +45,7 @@
 									<i class="bi bi-people"></i>
 								</div>
 								<div class="ps-3">
-									<h6>0</h6>
+									<h6 id="EstudiantesCount">0</h6>
 								</div>
 							</div>
 						</div>
@@ -61,7 +61,7 @@
 									<i class="bi bi-building"></i>
 								</div>
 								<div class="ps-3">
-									<h6>0</h6>
+									<h6 id="AreasCount">0</h6>
 								</div>
 							</div>
 						</div>
@@ -78,7 +78,7 @@
 									<i class="bi bi-book"></i>
 								</div>
 								<div class="ps-3">
-									<h6>0</h6>
+									<h6 id="CarrerasCount">0</h6>
 								</div>
 							</div>
 						</div>
@@ -347,3 +347,53 @@
 	</div>
 </section>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+	var il;
+	$(document).ready(function () {
+		$.ajax({
+			url: '@Url.Action("GetProfesores")',
+			type: 'GET',
+			dataType: 'json',
+			success: function (result) {
+				$('#ProfesoresCount').text(result);
+			},
+			error: function (xhr, status, error) {
+				console.log(error);
+			}
+		});
+		$.ajax({
+			url: '@Url.Action("GetEstudiantes")',
+			type: 'GET',
+			dataType: 'json',
+			success: function (result) {
+				$('#EstudiantesCount').text(result);
+			},
+			error: function (xhr, status, error) {
+				console.log(error);
+			}
+		});
+		$.ajax({
+			url: '@Url.Action("GetAreas")',
+			type: 'GET',
+			dataType: 'json',
+			success: function (result) {
+				$('#AreasCount').text(result);
+			},
+			error: function (xhr, status, error) {
+				console.log(error);
+			}
+		});
+		$.ajax({
+			url: '@Url.Action("GetCarreras")',
+			type: 'GET',
+			dataType: 'json',
+			success: function (result) {
+				$('#CarrerasCount').text(result);
+			},
+			error: function (xhr, status, error) {
+				console.log(error);
+			}
+		});
+	});
+</script>
