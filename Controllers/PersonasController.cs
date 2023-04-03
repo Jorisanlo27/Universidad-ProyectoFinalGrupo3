@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Universidad.Models;
 
 namespace Universidad.Controllers
 {
-    public class PersonasController : Controller
+	public class PersonasController : Controller
     {
         private readonly UniversidadContext _context;
 
@@ -55,7 +50,7 @@ namespace Universidad.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdPersona,Matricula,Nombre,Apellido,Edad,Cedula,Correo,NumCelular,NumTelefono,Direccion")] Persona persona)
+        public async Task<IActionResult> Create([Bind("IdPersona,Matricula,Nombre,Apellido,Edad,Genero,Cedula,Correo,NumCelular,NumTelefono,Direccion")] Persona persona)
         {
             if (ModelState.IsValid)
             {
@@ -87,7 +82,7 @@ namespace Universidad.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdPersona,Matricula,Nombre,Apellido,Edad,Cedula,Correo,NumCelular,NumTelefono,Direccion")] Persona persona)
+        public async Task<IActionResult> Edit(int id, [Bind("IdPersona,Matricula,Nombre,Apellido,Edad,Genero,Cedula,Correo,NumCelular,NumTelefono,Direccion")] Persona persona)
         {
             if (id != persona.IdPersona)
             {
