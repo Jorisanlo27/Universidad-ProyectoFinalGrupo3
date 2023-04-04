@@ -1,235 +1,56 @@
-﻿@model IEnumerable<Universidad.Models.Departamento>
+﻿@model IEnumerable<Universidad.Models.Area>
 
 @{
-    ViewData["Title"] = "Home Page";
+	ViewData["Title"] = "Index";
 }
 
-<div class="pagetitle">
-    <h1>Faculties</h1>
-    <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item active">Faculties</li>
-        </ol>
-    </nav>
-</div><!-- End Page Title -->
-
-<div class="card-body">
-    <h5 class="card-title">Economic and Business Sciences</h5>
-
-    <!-- Table with stripped rows -->
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Careers</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Licenciatura en Administración de Empresas</td>
-
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Licenciatura en Contabilidad</td>
-
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Licenciatura en Mercadotecnia</td>
-
-            </tr>
-            <tr>
-                <th scope="row">4</th>
-                <td>Licenciatura en Negocios Internacionales</td>
-
-            </tr>
-            <tr>
-                <th scope="row">5</th>
-                <td>Licenciatura en Finanzas</td>
-
-            </tr>
-            <tr>
-                <th scope="row">7</th>
-                <td>Licenciatura en Administración Turística y Hotelera</td>
-
-            </tr>
-        </tbody>
-    </table>
-    <!-- End Table with stripped rows -->
-
-</div>
-
-<div class="card-body">
-    <h5 class="card-title">Enginnering and Computer Science</h5>
-
-    <!-- Table with stripped rows -->
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Careers</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Ingeniería de Sistemas de Computación</td>
-
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Ingeniería de Software</td>
-
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Ingeniería Industrial</td>
-
-            </tr>
-            <tr>
-                <th scope="row">4</th>
-                <td>Ingeniería Eléctrica, Mención Potencia</td>
-
-            </tr>
-            <tr>
-                <th scope="row">5</th>
-                <td>Ingeniería Electrónica, Mención Comunicaciones</td>
-
-            </tr>
-        </tbody>
-    </table>
-    <!-- End Table with stripped rows -->
-
-</div>
-<div class="card-body">
-    <h5 class="card-title">Law</h5>
-
-    <!-- Table with stripped rows -->
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Careers</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Licenciatura en Derecho</td>
-
-            </tr>
-
-        </tbody>
-    </table>
-    <!-- End Table with stripped rows -->
-
-</div>
-<div class="card-body">
-    <h5 class="card-title">Art and Comunication</h5>
-
-    <!-- Table with stripped rows -->
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Careers</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Licenciatura en Diseño Gráfico</td>
-
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Licenciatura en Publicidad</td>
-
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Licenciatura en Diseño de Interiores</td>
-
-            </tr>
-            <tr>
-                <th scope="row">4</th>
-                <td>Licenciatura en Comunicación Digital</td>
-
-            </tr>
-            <tr>
-                <th scope="row">5</th>
-                <td>Licenciatura en Cinematografía</td>
-
-            </tr>
-            <tr>
-                <th scope="row">6</th>
-                <td>Licenciatura en Comunicación y Periodismo Multiplataforma</td>
-
-            </tr>
-        </tbody>
-    </table>
-    <!-- End Table with stripped rows -->
-
-</div>
-<div class="card-body">
-    <h5 class="card-title">General Studies</h5>
-
-    <!-- Table with stripped rows -->
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Careers</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Licenciatura en Inglés Orientada a la Enseñanza</td>
-
-            </tr>
-        </tbody>
-    </table>
-    <!-- End Table with stripped rows -->
-
-</div>
-
-@*
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+	<a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nombre)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.IdDepartamento">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdDepartamento">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdDepartamento">Delete</a>
-            </td>
-        </tr>
+
+@{
+	int i = 1;
 }
-    </tbody>
-</table>
-*@
+<div>
+	<div class="card-body w-50 m-auto">
+		@foreach (var area in Model)
+		{
+			<h5 class="card-title">@area.Nombre</h5>
+
+			<!-- Table with stripped rows -->
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th scope="col">#</th>
+						<th scope="col">Careers</th>
+						<th scope="col"></th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var career in area.Carreras)
+					{
+						<tr>
+							<td>
+								@i
+							</td>
+							<td>
+								@career.Nombre
+							</td>
+							<td>
+								<a asp-action="Edit" asp-route-id="@career.IdArea">Edit</a> |
+								<a asp-action="Details" asp-route-id="@career.IdArea">Details</a> |
+								<a asp-action="Delete" asp-route-id="@career.IdArea">Delete</a>
+							</td>
+						</tr>
+						i++;
+					}
+					@{
+						i = 1;
+					}
+				</tbody>
+			</table>
+		}
+	</div>
+</div>
