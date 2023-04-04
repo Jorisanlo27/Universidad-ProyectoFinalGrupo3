@@ -1,68 +1,54 @@
 ﻿@model IEnumerable<Universidad.Models.Departamento>
 
 @{
-	ViewData["Title"] = "Index";
-}
-
-<h1>Index</h1>
-
-<p>
-	<a asp-action="Create">Create New</a>
-</p>
-
-@{
-	int i = 1;
+    ViewData["Title"] = "Index";
+    int i = 1;
 }
 @foreach (var departamento in Model)
 {
-	<div class="bg-secondary-light mb-3">
-		<h3 class="text-center">@departamento.Nombre</h3>
-		<div class="d-flex justify-content-between align-items-baseline">
+    <div class="">
+        <h2 class="text-center fw-bold">@departamento.Nombre</h2>
+        <div class="d-flex justify-content-between align-items-baseline">
 
-			@foreach (var area in departamento.Areas)
-			{
-				var cp = (100 / (departamento.Areas.Count())) / (departamento.Areas.Count());
+            @foreach (var area in departamento.Areas)
+            {
+                var pind = (100 / departamento.Areas.Count());
+                var cp = pind - (pind / departamento.Areas.Count());
 
-				<h1>@cp</h1>
+                <div style="width: @cp%; margin: 0 auto;">
 
-				<div class="w-25 mx-auto">
+                    <h5 class="card-title">@area.Nombre</h5>
 
-					<h5 class="card-title">@area.Nombre</h5>
+                    <!-- Table with stripped rows -->
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Careers</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var career in area.Carreras)
+                            {
+                                <tr>
+                                    <td>
+                                        @career.Nombre
+                                    </td>
+                                    <td>
+                                        <a asp-action="Details" asp-route-id="@career.IdCarrera"><i class="bi bi-info-circle"></i></a>
+                                    </td>
+                                </tr>
+                                i++;
+                            }
+                            @{
+                                i = 1;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
 
-					<!-- Table with stripped rows -->
-					<table class="table table-striped">
-						<thead>
-							<tr>
-								<th scope="col">#</th>
-								<th scope="col">Careers</th>
-								<th scope="col"></th>
-							</tr>
-						</thead>
-						<tbody>
-							@foreach (var career in area.Carreras)
-							{
-								<tr>
-									<td>
-										@i
-									</td>
-									<td>
-										@career.Nombre
-									</td>
-									<td>
-										<a asp-action="Edit" asp-route-id="@career.IdArea">Edit</a> |
-										<a asp-action="Details" asp-route-id="@career.IdArea">Details</a> |
-										<a asp-action="Delete" asp-route-id="@career.IdArea">Delete</a>
-									</td>
-								</tr>
-								i++;
-							}
-							@{
-								i = 1;
-							}
-						</tbody>
-					</table>
-				</div>
-			}
-		</div>
-	</div>
+    <hr></hr>
 }
