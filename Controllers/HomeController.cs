@@ -19,8 +19,8 @@ namespace Universidad.Controllers
 
         public IActionResult Index()
         {
-            return View();
-        }
+			return RedirectToAction(actionName: "Dashboard");
+		}
         public IActionResult Dashboard()
         {
             return View();
@@ -45,7 +45,7 @@ namespace Universidad.Controllers
         {
             return View();  
         }
-		public IActionResult Student()
+		public IActionResult Students()
 		{
 			return View();
 		}
