@@ -141,63 +141,6 @@
                     </div>
                 </div>
 
-                <!-- Radar -->
-                <div class="col-xxl-6 col-sm-12">
-                    <div class="card">
-                        <div class="card-body pb-0">
-                            <h5 class="card-title text-center">Report <span>| by Faculties</span></h5>
-                            <!-- Radar Chart -->
-                            <div id="radarChart" style="min-height: 400px;" class="echart"></div>
-
-                            <script>
-                                document.addEventListener("DOMContentLoaded", () => {
-                                    echarts.init(document.querySelector("#radarChart")).setOption({
-                                        legend: {
-                                            orient: 'vertical',
-                                            left: 'left',
-                                            data: ['Teachers', 'Students']
-                                        },
-                                        radar: {
-                                            indicator: [{
-                                                name: 'ECM',
-                                                max: 6500
-                                            },
-                                            {
-                                                name: 'ING',
-                                                max: 16000
-                                            },
-                                            {
-                                                name: 'LAW',
-                                                max: 30000
-                                            },
-                                            {
-                                                name: 'ART',
-                                                max: 38000
-                                            },
-                                            {
-                                                name: 'STD',
-                                                max: 52000
-                                            }]
-                                        },
-                                        series: [{
-                                            name: 'Budget vs spending',
-                                            type: 'radar',
-                                            data: [{
-                                                value: [4200, 3000, 20000, 35000, 50000, 18000],
-                                                name: 'Teachers'
-                                            },
-                                            {
-                                                value: [5000, 14000, 28000, 26000, 42000, 21000],
-                                                name: 'Students'
-                                            }
-                                            ]
-                                        }]
-                                    });
-                                });
-                            </script><!-- End Radar Chart -->
-                        </div>
-                    </div>
-                </div><!-- End Radar -->
                 <!-- Pie -->
                 <div class="col-xxl-6 col-sm-12">
                     <div class="card">
