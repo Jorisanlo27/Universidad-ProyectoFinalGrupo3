@@ -1,10 +1,10 @@
 ﻿namespace Universidad.Models
 {
-	public partial class Profesore
+    public partial class Profesore
     {
         public Profesore()
         {
-            Asignaturas = new HashSet<Asignatura>();
+            Clases = new HashSet<Clase>();
             ProfesoresAreas = new HashSet<ProfesoresArea>();
         }
 
@@ -12,7 +12,7 @@
         public int IdPersona { get; set; }
 
         public virtual Persona IdPersonaNavigation { get; set; } = null!;
-        public virtual ICollection<Asignatura> Asignaturas { get; set; }
+        public virtual ICollection<Clase> Clases { get; set; }
         public virtual ICollection<ProfesoresArea> ProfesoresAreas { get; set; }
     }
 }

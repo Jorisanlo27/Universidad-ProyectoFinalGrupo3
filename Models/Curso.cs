@@ -7,7 +7,7 @@ namespace Universidad.Models
     {
         public Curso()
         {
-            Asignaturas = new HashSet<Asignatura>();
+            Clases = new HashSet<Clase>();
         }
 
         public int IdCurso { get; set; }
@@ -15,6 +15,6 @@ namespace Universidad.Models
         public int NumAula { get; set; }
         public int? MaxCapacidad { get; set; }
 
-        public virtual ICollection<Asignatura> Asignaturas { get; set; }
+        public virtual ICollection<Clase> Clases { get; set; }
     }
 }
