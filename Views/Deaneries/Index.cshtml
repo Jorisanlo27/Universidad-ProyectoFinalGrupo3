@@ -15,40 +15,74 @@
                 var pind = (100 / departamento.Areas.Count());
                 var cp = pind - (pind / departamento.Areas.Count());
 
-                <div style="width: @cp%; margin: 0 auto;">
+                if (cp != 0)
+                {
+                    <div style="width: @cp%; margin: 0 auto;">
+                        <h5 class="card-title text-center">@area.Nombre</h5>
 
-                    <h5 class="card-title">@area.Nombre</h5>
-
-                    <!-- Table with stripped rows -->
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Careers</th>
-                                <th scope="col"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var career in area.Carreras)
-                            {
+                        <!-- Table with stripped rows -->
+                        <table class="table table-striped">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        @career.Nombre
-                                    </td>
-                                    <td>
-                                        <a asp-action="Details" asp-route-id="@career.IdCarrera"><i class="bi bi-info-circle"></i></a>
-                                    </td>
+                                    <th scope="col">Careers</th>
+                                    <th scope="col"></th>
                                 </tr>
-                                i++;
-                            }
-                            @{
-                                i = 1;
-                            }
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <tbody>
+                                @foreach (var career in area.Carreras)
+                                {
+                                    <tr>
+                                        <td>
+                                            @career.Nombre
+                                        </td>
+                                        <td class="align-middle">
+                                            <a asp-action="Details" asp-route-id="@career.IdCarrera"><i class="bi bi-info-circle"></i></a>
+                                        </td>
+                                    </tr>
+                                    i++;
+                                }
+                                @{
+                                    i = 1;
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div style="width: 25%; margin: 0 auto;">
+                        <h5 class="card-title text-center">@area.Nombre</h5>
+
+                        <!-- Table with stripped rows -->
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Careers</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var career in area.Carreras)
+                                {
+                                    <tr>
+                                        <td>
+                                            @career.Nombre
+                                        </td>
+                                        <td class="align-middle">
+                                            <a asp-action="Details" asp-route-id="@career.IdCarrera"><i class="bi bi-info-circle"></i></a>
+                                        </td>
+                                    </tr>
+                                    i++;
+                                }
+                                @{
+                                    i = 1;
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
             }
         </div>
     </div>
-
     <hr></hr>
 }

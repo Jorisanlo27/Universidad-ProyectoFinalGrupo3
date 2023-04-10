@@ -23,7 +23,7 @@ namespace Universidad.Controllers
 		}
         public IActionResult Dashboard()
         {
-            return View();
+            return View(_context.Carreras.ToList());
         }
         public IActionResult Faculties()
         {
@@ -76,7 +76,28 @@ namespace Universidad.Controllers
 
 		public JsonResult GetCarreras()
 		{
-			var carreras = _context.Personas.Count();
+			var carreras = _context.Carreras.Count();
+
+			return Json(carreras);
+		}
+
+		public JsonResult GetDeaneriesNames()
+		{
+			var carreras = _context.Areas;
+
+			return Json(carreras);
+		}
+
+		public JsonResult GetCareersNames()
+		{
+			var carreras = _context.Carreras;
+
+			return Json(carreras);
+		}
+
+		public JsonResult GetCountTeachersByAreas()
+		{
+			var carreras = _context.ProfesoresAreas;
 
 			return Json(carreras);
 		}
