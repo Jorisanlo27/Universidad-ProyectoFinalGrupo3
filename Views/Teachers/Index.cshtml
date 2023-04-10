@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Universidad.Models.Profesore>
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<div class="pagetitle d-flex justify-content-between">
+	<div class="pagetitle">
+		<h1>Teachers</h1>
+		<nav>
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="/">Home</a></li>
+				<li class="breadcrumb-item">Teacher</li>
+			</ol>
+		</nav>
+	</div>
+
+	<div class="d-flex align-items-center">
+		<button type="button" class="btn btn-outline-primary h-50">
+			<a class="text-decoration-none" asp-action="Create">Create New</a>
+		</button>
+	</div>
+
+</div><!-- End Page Title -->
+
+<section class="section">
+	<div class="row">
+		<div class="col-12">
+			<div class="card overflow-auto">
+				<div class="card-body">
+					<table class="table datatable">
+						<thead>
+							<tr>
+								<th scope="col">No.</th>
+								<th scope="col">Nombre y Apellido</th>
+								<th scope="col">Correo</th>
+								<th scope="col">Celular</th>
+								<th scope="col"></th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in Model.OrderBy(p => p.IdProfesor))
+							{
+								<tr data-index="0">
+									<td>@item.IdProfesor</td>
+									<td>@item.IdPersonaNavigation.Nombre @item.IdPersonaNavigation.Apellido</td>
+									<td>@item.IdPersonaNavigation.Correo</td>
+									<td>@item.IdPersonaNavigation.NumCelular</td>
+									<td>
+										<a asp-action="Details" asp-route-id="@item.IdProfesor"><i class="bi bi-info-circle"></i></a>
+									</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
