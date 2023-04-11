@@ -4,11 +4,11 @@ using Universidad.Models;
 
 namespace Universidad.Controllers
 {
-	public class PersonasController : Controller
+	public class PeopleController : Controller
     {
         private readonly UniversidadContext _context;
 
-        public PersonasController(UniversidadContext context)
+        public PeopleController(UniversidadContext context)
         {
             _context = context;
         }
