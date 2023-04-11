@@ -1,441 +1,445 @@
 ﻿@model IEnumerable<Universidad.Models.Carrera>
 
 @{
-    ViewData["Title"] = "Home Page";
+	ViewData["Title"] = "Home Page";
 }
 
 <div class="pagetitle">
-    <h1>Dashboard</h1>
-    <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item active">Dashboard</li>
-        </ol>
-    </nav>
+	<h1>Dashboard</h1>
+	<nav>
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="/">Home</a></li>
+			<li class="breadcrumb-item active">Dashboard</li>
+		</ol>
+	</nav>
 </div><!-- End Page Title -->
 
 <section class="section dashboard">
-    <div class="col-12">
-        <div class="row">
-            <!-- Teachers Card -->
-            <div class="col-xxl-3 col-md-6">
-                <div class="card info-card sales-card">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Teachers <span>| Amounts</span></h5>
-                        <div class="d-flex align-items-center justify-content-center">
-                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                <i class="bi bi-people"></i>
-                            </div>
-                            <div class="ps-3">
-                                <h6 id="ProfesoresCount">0</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- End Teachers Card -->
-            <!-- Students Card -->
-            <div class="col-xxl-3 col-md-6">
-                <div class="card info-card revenue-card">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Students <span>| Amount</span></h5>
-                        <div class="d-flex align-items-center justify-content-center">
-                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                <i class="bi bi-people"></i>
-                            </div>
-                            <div class="ps-3">
-                                <h6 id="EstudiantesCount">0</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- End Students Card -->
-            <!-- Falculties Card -->
-            <div class="col-xxl-3 col-md-6">
-                <div class="card info-card customers-card">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Faculties <span>| Amount</span></h5>
-                        <div class="d-flex align-items-center justify-content-center">
-                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                <i class="bi bi-building"></i>
-                            </div>
-                            <div class="ps-3">
-                                <h6 id="AreasCount">0</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+	<div class="col-12">
+		<div class="row">
+			<!-- Teachers Card -->
+			<div class="col-xxl-3 col-md-6">
+				<div class="card info-card sales-card">
+					<div class="card-body text-center">
+						<h5 class="card-title">Teachers <span>| Amounts</span></h5>
+						<div class="d-flex align-items-center justify-content-center">
+							<div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+								<i class="bi bi-people"></i>
+							</div>
+							<div class="ps-3">
+								<h6 id="ProfesoresCount">0</h6>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!-- End Teachers Card -->
+			<!-- Students Card -->
+			<div class="col-xxl-3 col-md-6">
+				<div class="card info-card revenue-card">
+					<div class="card-body text-center">
+						<h5 class="card-title">Students <span>| Amount</span></h5>
+						<div class="d-flex align-items-center justify-content-center">
+							<div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+								<i class="bi bi-people"></i>
+							</div>
+							<div class="ps-3">
+								<h6 id="EstudiantesCount">0</h6>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!-- End Students Card -->
+			<!-- Falculties Card -->
+			<div class="col-xxl-3 col-md-6">
+				<div class="card info-card customers-card">
+					<div class="card-body text-center">
+						<h5 class="card-title">Faculties <span>| Amount</span></h5>
+						<div class="d-flex align-items-center justify-content-center">
+							<div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+								<i class="bi bi-building"></i>
+							</div>
+							<div class="ps-3">
+								<h6 id="AreasCount">0</h6>
+							</div>
+						</div>
+					</div>
+				</div>
 
-            </div><!-- End Falculties Card -->
-            <!-- Career Card -->
-            <div class="col-xxl-3 col-md-6">
-                <div class="card info-card customers-card">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Career <span>| Amount</span></h5>
-                        <div class="d-flex align-items-center justify-content-center">
-                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                                <i class="bi bi-book"></i>
-                            </div>
-                            <div class="ps-3">
-                                <h6 id="CarrerasCount">0</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- End Career Card -->
-            <!-- Vertical Bar Chart -->
-            <div class="col-xxl-6 col-sm-12">
-                <div class="card">
-                    <div class="card-body pb-0">
-                        <h5 class="card-title text-center">Teachers <span>| by Areas</span></h5>
-
-
-                        <div id="verticalBarChart" style="min-height: 400px;" class="echart"></div>
-
-                        <script>
-                            document.addEventListener("DOMContentLoaded", () => {
-                                echarts.init(document.querySelector("#verticalBarChart")).setOption({
-                                    tooltip: {
-                                        trigger: 'axis',
-                                        axisPointer: {
-                                            type: 'shadow'
-                                        }
-                                    },
-                                    legend: {
-                                        orient: 'horizontal',
-                                        left: 'center',
-                                        data: ['Teachers']
-                                    },
-                                    grid: {
-                                        left: '3%',
-                                        right: '4%',
-                                        bottom: '3%',
-                                        containLabel: true
-                                    },
-                                    xAxis: {
-                                        type: 'value',
-                                        boundaryGap: [0, 0.01]
-                                    },
-                                    yAxis: {
-                                        type: 'category'
-                                    },
-                                    series: [{
-                                        name: 'Teachers',
-                                        type: 'bar',
-                                        data: [8, 13, 32, 43, 27, 8, 13, 32, 43, 27, 43, 57]
-                                    }]
-                                });
-                            });
-                        </script>
+			</div><!-- End Falculties Card -->
+			<!-- Career Card -->
+			<div class="col-xxl-3 col-md-6">
+				<div class="card info-card customers-card">
+					<div class="card-body text-center">
+						<h5 class="card-title">Career <span>| Amount</span></h5>
+						<div class="d-flex align-items-center justify-content-center">
+							<div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+								<i class="bi bi-book"></i>
+							</div>
+							<div class="ps-3">
+								<h6 id="CarrerasCount">0</h6>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div><!-- End Career Card -->
+			<!-- Vertical Bar Chart -->
+			<div class="col-xxl-6 col-sm-12">
+				<div class="card">
+					<div class="card-body pb-0">
+						<h5 class="card-title text-center">Teachers <span>| by Areas</span></h5>
 
 
-                    </div>
-                </div>
-            </div><!-- End Vertical Bar Chart -->
-            <!-- Pie -->
-            <div class="col-xxl-6 col-sm-12">
-                <div class="card">
-                    <div class="card-body pb-0">
-                        <h5 class="card-title text-center">Career <span>| by Students</span></h5>
+						<div id="verticalBarChart" style="min-height: 400px;" class="echart"></div>
 
-                        <!-- Pie Chart -->
-                        <div id="pieChart" style="min-height: 400px;" class="echart"></div>
+						<script>
+							document.addEventListener("DOMContentLoaded", () => {
+								echarts.init(document.querySelector("#verticalBarChart")).setOption({
+									tooltip: {
+										trigger: 'axis',
+										axisPointer: {
+											type: 'shadow'
+										}
+									},
+									legend: {
+										orient: 'horizontal',
+										left: 'center',
+										data: ['Teachers']
+									},
+									grid: {
+										left: '3%',
+										right: '4%',
+										bottom: '3%',
+										containLabel: true
+									},
+									xAxis: {
+										type: 'value',
+										boundaryGap: [0, 0.01]
+									},
+									yAxis: {
+										type: 'category'
+									},
+									series: [{
+										name: 'Teachers',
+										type: 'bar',
+										//data: [8, 13, 32, 43, 27, 8, 13, 32, 43, 27, 43, 57]
+									}]
+								});
+							});
+						</script>
 
-                        <script>
-                            document.addEventListener("DOMContentLoaded", () => {
-                                echarts.init(document.querySelector("#pieChart")).setOption({
-                                    tooltip: {
-                                        trigger: 'item'
-                                    },
-                                    series: [{
-                                        type: 'pie',
-                                        radius: '50%',
-                                        top: '-60',
-                                        emphasis: {
-                                            itemStyle: {
-                                                shadowBlur: 10,
-                                                shadowOffsetX: 0,
-                                                shadowColor: 'rgba(0, 0, 0, 0.5)'
-                                            }
-                                        }
-                                    }]
-                                });
-                            });
-                        </script>
-                        <!-- End Pie Chart -->
-                    </div>
-                </div>
-            </div><!-- End Pie -->
-            <!-- Reports -->
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">Reports <span>/ Semester</span></h5>
 
-                        <!-- Line Chart -->
-                        <div id="reportsChart"></div>
+					</div>
+				</div>
+			</div><!-- End Vertical Bar Chart -->
+			<!-- Pie -->
+			<div class="col-xxl-6 col-sm-12">
+				<div class="card">
+					<div class="card-body pb-0">
+						<h5 class="card-title text-center">Career <span>| by Students</span></h5>
 
-                        <script>
-                            document.addEventListener("DOMContentLoaded", () => {
-                                new ApexCharts(document.querySelector("#reportsChart"), {
-                                    series: [{
-                                        name: 'Teacher',
-                                        data: [31, 40, 28, 51, 42, 82, 56],
-                                    }, {
-                                        name: 'Students',
-                                        data: [11, 32, 45, 32, 34, 52, 41]
-                                    }, {
-                                        name: 'Faculties',
-                                        data: [15, 11, 32, 18, 9, 24, 11]
-                                    }],
-                                    chart: {
-                                        height: 350,
-                                        type: 'area',
-                                        toolbar: {
-                                            show: false
-                                        },
-                                    },
-                                    markers: {
-                                        size: 4
-                                    },
-                                    colors: ['#4154f1', '#2eca6a', '#ff771d'],
-                                    fill: {
-                                        type: "gradient",
-                                        gradient: {
-                                            shadeIntensity: 1,
-                                            opacityFrom: 0.3,
-                                            opacityTo: 0.4,
-                                            stops: [0, 90, 100]
-                                        }
-                                    },
-                                    dataLabels: {
-                                        enabled: false
-                                    },
-                                    stroke: {
-                                        curve: 'smooth',
-                                        width: 2
-                                    },
-                                    xaxis: {
-                                        type: 'datetime',
-                                        categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
-                                    },
-                                    tooltip: {
-                                        x: {
-                                            format: 'dd/MM/yy HH:mm'
-                                        },
-                                    }
-                                }).render();
-                            });
-                        </script>
-                        <!-- End Line Chart -->
+						<!-- Pie Chart -->
+						<div id="pieChart" style="min-height: 400px;" class="echart"></div>
 
-                    </div>
+						<script>
+							document.addEventListener("DOMContentLoaded", () => {
+								echarts.init(document.querySelector("#pieChart")).setOption({
+									tooltip: {
+										trigger: 'item'
+									},
+									series: [{
+										type: 'pie',
+										radius: '50%',
+										top: '-60',
+										emphasis: {
+											itemStyle: {
+												shadowBlur: 10,
+												shadowOffsetX: 0,
+												shadowColor: 'rgba(0, 0, 0, 0.5)'
+											}
+										}
+									}]
+								});
+							});
+						</script>
+						<!-- End Pie Chart -->
+					</div>
+				</div>
+			</div><!-- End Pie -->
+			<!-- Reports -->
+			<div class="col-12">
+				<div class="card">
+					<div class="card-body text-center">
+						<h5 class="card-title">Reports <span>/ Semester</span></h5>
 
-                </div>
-            </div><!-- End Reports -->
-            <!-- Recent Sales -->
-            <div class="col-12">
-                <div class="card recent-sales overflow-auto">
+						<!-- Line Chart -->
+						<div id="reportsChart"></div>
 
-                    <div class="filter">
-                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                            <li class="dropdown-header text-start">
-                                <h6>Filter</h6>
-                            </li>
+						<script>
+							document.addEventListener("DOMContentLoaded", () => {
+								new ApexCharts(document.querySelector("#reportsChart"), {
+									series: [{
+										name: 'Teacher',
+										data: [31, 40, 28, 51, 42, 82, 56],
+									}, {
+										name: 'Students',
+										data: [11, 32, 45, 32, 34, 52, 41]
+									}, {
+										name: 'Faculties',
+										data: [15, 11, 32, 18, 9, 24, 11]
+									}],
+									chart: {
+										height: 350,
+										type: 'area',
+										toolbar: {
+											show: false
+										},
+									},
+									markers: {
+										size: 4
+									},
+									colors: ['#4154f1', '#2eca6a', '#ff771d'],
+									fill: {
+										type: "gradient",
+										gradient: {
+											shadeIntensity: 1,
+											opacityFrom: 0.3,
+											opacityTo: 0.4,
+											stops: [0, 90, 100]
+										}
+									},
+									dataLabels: {
+										enabled: false
+									},
+									stroke: {
+										curve: 'smooth',
+										width: 2
+									},
+									xaxis: {
+										type: 'datetime',
+										categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
+									},
+									tooltip: {
+										x: {
+											format: 'dd/MM/yy HH:mm'
+										},
+									}
+								}).render();
+							});
+						</script>
+						<!-- End Line Chart -->
 
-                            <li><a class="dropdown-item" href="#">Today</a></li>
-                            <li><a class="dropdown-item" href="#">This Month</a></li>
-                            <li><a class="dropdown-item" href="#">This Year</a></li>
-                        </ul>
-                    </div>
+					</div>
 
-                    <div class="card-body">
-                        <h5 class="card-title">Requested Events</h5>
+				</div>
+			</div><!-- End Reports -->
+			<!-- Recent Sales -->
+			<div class="col-12">
+				<div class="card recent-sales overflow-auto">
 
-                        <table class="table table-borderless datatable">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Faculties</th>
-                                    <th scope="col">Event</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row"><a href="#">#2457</a></th>
-                                    <td>Economic and Business Sciences</td>
-                                    <td><a href="#" class="text-primary">Math competition</a></td>
-                                    <td>$64</td>
-                                    <td><span class="badge bg-success">Approved</span></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><a href="#">#2147</a></th>
-                                    <td>Enginnering and Computer Science</td>
-                                    <td><a href="#" class="text-primary">Talk about technology and its current operation</a></td>
-                                    <td>$47</td>
-                                    <td><span class="badge bg-warning">Pending</span></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><a href="#">#2049</a></th>
-                                    <td>General Studies</td>
-                                    <td><a href="#" class="text-primary">competition language</a></td>
-                                    <td>$147</td>
-                                    <td><span class="badge bg-danger">Rejected</span></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><a href="#">#2644</a></th>
-                                    <td>Art and Comunication</td>
-                                    <td><a href="#" class="text-primar">Talk about the impact that art has today</a></td>
-                                    <td>$67</td>
-                                    <td><span class="badge bg-success">Approved</span></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row"><a href="#">#2644</a></th>
-                                    <td>Law</td>
-                                    <td><a href="#" class="text-primary">court practice essay</a></td>
-                                    <td>$165</td>
-                                    <td><span class="badge bg-success">Approved</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
+					<div class="filter">
+						<a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+						<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+							<li class="dropdown-header text-start">
+								<h6>Filter</h6>
+							</li>
 
-                    </div>
+							<li><a class="dropdown-item" href="#">Today</a></li>
+							<li><a class="dropdown-item" href="#">This Month</a></li>
+							<li><a class="dropdown-item" href="#">This Year</a></li>
+						</ul>
+					</div>
 
-                </div>
-            </div><!-- End Recent Sales -->
-        </div>
-    </div>
+					<div class="card-body">
+						<h5 class="card-title">Requested Events</h5>
+
+						<table class="table table-borderless datatable">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Faculties</th>
+									<th scope="col">Event</th>
+									<th scope="col">Price</th>
+									<th scope="col">Status</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row"><a href="#">#2457</a></th>
+									<td>Economic and Business Sciences</td>
+									<td><a href="#" class="text-primary">Math competition</a></td>
+									<td>$64</td>
+									<td><span class="badge bg-success">Approved</span></td>
+								</tr>
+								<tr>
+									<th scope="row"><a href="#">#2147</a></th>
+									<td>Enginnering and Computer Science</td>
+									<td><a href="#" class="text-primary">Talk about technology and its current operation</a></td>
+									<td>$47</td>
+									<td><span class="badge bg-warning">Pending</span></td>
+								</tr>
+								<tr>
+									<th scope="row"><a href="#">#2049</a></th>
+									<td>General Studies</td>
+									<td><a href="#" class="text-primary">competition language</a></td>
+									<td>$147</td>
+									<td><span class="badge bg-danger">Rejected</span></td>
+								</tr>
+								<tr>
+									<th scope="row"><a href="#">#2644</a></th>
+									<td>Art and Comunication</td>
+									<td><a href="#" class="text-primar">Talk about the impact that art has today</a></td>
+									<td>$67</td>
+									<td><span class="badge bg-success">Approved</span></td>
+								</tr>
+								<tr>
+									<th scope="row"><a href="#">#2644</a></th>
+									<td>Law</td>
+									<td><a href="#" class="text-primary">court practice essay</a></td>
+									<td>$165</td>
+									<td><span class="badge bg-success">Approved</span></td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+
+				</div>
+			</div><!-- End Recent Sales -->
+		</div>
+	</div>
 </section>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-    $(document).ready(function () {
-        $.ajax({
-            url: '@Url.Action("GetProfesores")',
-            type: 'GET',
-            dataType: 'json',
-            success: function (result) {
-                $('#ProfesoresCount').prop('Counter', 0).animate({
-                    Counter: result
-                }, {
-                    duration: 5000,
-                    easing: 'swing',
-                    step: function (now) {
-                        $(this).text(Math.ceil(now));
-                    }
-                });
-            },
-            error: function (xhr, status, error) {
-                console.log(error);
-            }
-        });
-        $.ajax({
-            url: '@Url.Action("GetEstudiantes")',
-            type: 'GET',
-            dataType: 'json',
-            success: function (result) {
-                $('#EstudiantesCount').prop('Counter', 0).animate({
-                    Counter: result
-                }, {
-                    duration: 5000,
-                    easing: 'swing',
-                    step: function (now) {
-                        $(this).text(Math.ceil(now));
-                    }
-                });
-            },
-            error: function (xhr, status, error) {
-                console.log(error);
-            }
-        });
-        $.ajax({
-            url: '@Url.Action("GetAreas")',
-            type: 'GET',
-            dataType: 'json',
-            success: function (result) {
-                $('#AreasCount').prop('Counter', 0).animate({
-                    Counter: result
-                }, {
-                    duration: 5000,
-                    easing: 'swing',
-                    step: function (now) {
-                        $(this).text(Math.ceil(now));
-                    }
-                });
-            },
-            error: function (xhr, status, error) {
-                console.log(error);
-            }
-        });
-        $.ajax({
-            url: '@Url.Action("GetCarreras")',
-            type: 'GET',
-            dataType: 'json',
-            success: function (result) {
-                $('#CarrerasCount').prop('Counter', 0).animate({
-                    Counter: result
-                }, {
-                    duration: 5000,
-                    easing: 'swing',
-                    step: function (now) {
-                        $(this).text(Math.ceil(now));
-                    }
-                });
-            },
-            error: function (xhr, status, error) {
-                console.log(error);
-            }
-        });
+	$(document).ready(function () {
+		$.ajax({
+			url: '@Url.Action("GetProfesores")',
+			type: 'GET',
+			dataType: 'json',
+			success: function (result) {
+				$('#ProfesoresCount').prop('Counter', 0).animate({
+					Counter: result
+				}, {
+					duration: 5000,
+					easing: 'swing',
+					step: function (now) {
+						$(this).text(Math.ceil(now));
+					}
+				});
+			},
+			error: function (xhr, status, error) {
+				console.log(error);
+			}
+		});
+		$.ajax({
+			url: '@Url.Action("GetEstudiantes")',
+			type: 'GET',
+			dataType: 'json',
+			success: function (result) {
+				$('#EstudiantesCount').prop('Counter', 0).animate({
+					Counter: result
+				}, {
+					duration: 5000,
+					easing: 'swing',
+					step: function (now) {
+						$(this).text(Math.ceil(now));
+					}
+				});
+			},
+			error: function (xhr, status, error) {
+				console.log(error);
+			}
+		});
+		$.ajax({
+			url: '@Url.Action("GetAreas")',
+			type: 'GET',
+			dataType: 'json',
+			success: function (result) {
+				$('#AreasCount').prop('Counter', 0).animate({
+					Counter: result
+				}, {
+					duration: 5000,
+					easing: 'swing',
+					step: function (now) {
+						$(this).text(Math.ceil(now));
+					}
+				});
+			},
+			error: function (xhr, status, error) {
+				console.log(error);
+			}
+		});
+		$.ajax({
+			url: '@Url.Action("GetCarreras")',
+			type: 'GET',
+			dataType: 'json',
+			success: function (result) {
+				$('#CarrerasCount').prop('Counter', 0).animate({
+					Counter: result
+				}, {
+					duration: 5000,
+					easing: 'swing',
+					step: function (now) {
+						$(this).text(Math.ceil(now));
+					}
+				});
+			},
+			error: function (xhr, status, error) {
+				console.log(error);
+			}
+		});
 
-        var verticalBarChart = echarts.init(document.getElementById('verticalBarChart'));
-        $.ajax({
-            url: '@Url.Action("GetDeaneriesNames")',
-            type: 'GET',
-            dataType: 'json',
-            success: function (result) {
-                var arrayOfObjects = [];
-                for (var key in result) {
-                    if (result.hasOwnProperty(key)) {
-                        arrayOfObjects.push(result[key].nombre);
-                    }
-                }
+		var verticalBarChart = echarts.init(document.getElementById('verticalBarChart'));
+		$.ajax({
+			url: '@Url.Action("GetTeachersByAreas")',
+			type: 'GET',
+			dataType: 'json',
+			success: function (result) {
+				console.log(result)
+				var arrayOfNames = [];
+				var arrayOfValues = [];
+				for (var key in result) {
+					if (result.hasOwnProperty(key)) {
+						arrayOfNames.push(result[key].name);
+						arrayOfValues.push(result[key].value);
+					}
+				}
+				verticalBarChart.setOption({
+					yAxis: [{
+						data: arrayOfNames
+					}],
+					series: [{
+						data: arrayOfValues
+					}]
+				})
+			},
+			error: function (xhr, status, error) {
+				console.log(error);
+			}
+		});
 
-                verticalBarChart.setOption({
-                    yAxis: [{
-                        data: arrayOfObjects
-                    }]
-                })
-            },
-            error: function (xhr, status, error) {
-                console.log(error);
-            }
-        });
-
-        var pieChart = echarts.init(document.getElementById('pieChart'));
-        $.ajax({
-            url: '@Url.Action("GetCareersNames")',
-            type: 'GET',
-            dataType: 'json',
-            success: function (result) {
-                var arrayOfObjects = [];
-                for (var key in result) {
-                    if (result.hasOwnProperty(key)) {
-                        arrayOfObjects.push({ value: 100, name: result[key].nombre });
-                    }
-                }
-
-                pieChart.setOption({
-                    series: [{
-                        data: arrayOfObjects
-                    }]
-                })
-            },
-            error: function (xhr, status, error) {
-                console.log(error);
-            }
-        });
-    });
+		var pieChart = echarts.init(document.getElementById('pieChart'));
+		$.ajax({
+			url: '@Url.Action("GetStudentByCareers")',
+			type: 'GET',
+			dataType: 'json',
+			success: function (result) {
+				var arrayOfObjects = [];
+				for (var key in result) {
+					if (result.hasOwnProperty(key)) {
+						arrayOfObjects.push({ value: result[key].value, name: result[key].name });
+					}
+				}
+				pieChart.setOption({
+					series: [{
+						data: arrayOfObjects
+					}]
+				})
+			},
+			error: function (xhr, status, error) {
+				console.log(error);
+			}
+		});
+	});
 
 </script>

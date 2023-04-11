@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using System.Numerics;
 using Universidad.Models;
 
 namespace Universidad.Controllers
@@ -88,21 +89,54 @@ namespace Universidad.Controllers
 			return Json(carreras);
 		}
 
-		public JsonResult GetCareersNames()
-		{
-			var carreras = _context.Carreras;
+		//public JsonResult GetCareersNames()
+		//{
+		//	var carreras = _context.Carreras;
 
-			return Json(carreras);
+		//	return Json(carreras);
+		//}
+
+		//public JsonResult GetTeachersByAreas()
+		//{
+		//	var carreras = _context.ProfesoresAreas;
+
+		//	return Json(carreras);
+		//}
+
+		public JsonResult GetTeachersByAreas()
+		{
+			var query = from area in _context.Areas
+						join pa in _context.ProfesoresAreas on area.IdArea equals pa.IdArea
+						join persona in _context.Personas on pa.IdProfesor equals persona.IdPersona
+						group area by area.Nombre into g
+						orderby g.Max(a => a.IdArea) descending
+						select new
+						{
+							id = g.Max(a => a.IdArea),
+							value = g.Count(),
+							name = g.Key
+						};
+
+			return Json(query);
 		}
 
-		public JsonResult GetCountTeachersByAreas()
-		{
-			var carreras = _context.ProfesoresAreas;
+		public JsonResult GetStudentByCareers()
+        {
+            var query = from carrera in _context.Carreras
+                        join estudiante in _context.Estudiantes on carrera.IdCarrera equals estudiante.IdCarrera
+                        group estudiante by carrera.Nombre into g
+                        orderby g.Max(c => c.IdCarrera)
+                        select new
+                        {
+                            id = g.Max(c => c.IdCarrera),
+							value = g.Count(),
+                            name = g.Key
+                        };
 
-			return Json(carreras);
-		}
+            return Json(query);
+        }
 
-		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
