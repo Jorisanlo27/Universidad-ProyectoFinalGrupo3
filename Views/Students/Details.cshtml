@@ -4,27 +4,118 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<div class="pagetitle">
+    <h1>Details</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Students">Students</a></li>
+            <li class="breadcrumb-item active">Profile</li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
 
-<div>
-    <h4>Estudiante</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdCarreraNavigation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdCarreraNavigation.IdCarrera)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IdPersonaNavigation)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IdPersonaNavigation.IdPersona)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdEstudiantes">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+<section class="section profile">
+    <div class="row">
+        <div class="col-xl-4">
+
+            <div class="card">
+                <div class="card-body profile-card pb-3 d-flex flex-column align-items-center">
+                    <div class="w-75 text-end">
+                        <a asp-controller="People" asp-action="Edit" asp-route-id="@Model?.IdEstudiantes" type="button" class="btn btn-sm btn-warning">
+                            <i class="bi bi-pencil-fill"></i>
+                        </a>
+                    </div>
+
+                    @if (Model.IdPersonaNavigation.Genero.Equals("M"))
+                    {
+                        <img src="~/img/male.png" alt="Profile" class="rounded-circle">
+                    } else
+                    {
+                        <img src="~/img/female.png" alt="Profile" class="rounded-circle">
+                    }
+                    <h2  class="mb-2">@Model.IdPersonaNavigation.Nombre @Model.IdPersonaNavigation.Apellido</h2>
+                    <h3>Student</h3>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-xl-8">
+
+            <div class="card">
+                <div class="card-body pt-3">
+                    <!-- Bordered Tabs -->
+                    <ul class="nav nav-tabs nav-tabs-bordered">
+
+                        <li class="nav-item">
+                            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
+                        </li>
+
+                        <li class="nav-item">
+                            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">Contact Profile</button>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content pt-2">
+
+                        <div class="tab-pane fade show active profile-overview ps-3" id="profile-overview">
+                            <h5 class="card-title">Profile Details</h5>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Identification Card Number</div>
+                                <div class="col-lg-9 col-md-8">@Model.IdPersonaNavigation.Cedula</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">University Registration Number</div>
+                                <div class="col-lg-9 col-md-8">@Model.IdPersonaNavigation.Matricula</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Gender</div>
+                                <div class="col-lg-9 col-md-8">@Model.IdPersonaNavigation.Genero</div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label ">Age</div>
+                                <div class="col-lg-9 col-md-8">@Model.IdPersonaNavigation.Edad</div>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade show profile-overview ps-3" id="profile-edit">
+                            <h5 class="card-title">Information</h5>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Email</div>
+                                <div class="col-md-8 col-lg-9">
+                                    @Model.IdPersonaNavigation.Correo
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Phone</div>
+                                <div class="col-md-8 col-lg-9">
+                                    @Model.IdPersonaNavigation.NumCelular
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Home Phone</div>
+                                <div class="col-md-8 col-lg-9">
+                                    @Model.IdPersonaNavigation.NumTelefono
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-3 col-md-4 label">Address</div>
+                                <div class="col-md-8 col-lg-9">
+                                    @Model.IdPersonaNavigation.Direccion
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
