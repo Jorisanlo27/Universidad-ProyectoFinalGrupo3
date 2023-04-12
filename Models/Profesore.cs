@@ -1,4 +1,7 @@
-﻿namespace Universidad.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace Universidad.Models
 {
     public partial class Profesore
     {

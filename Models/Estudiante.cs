@@ -7,7 +7,6 @@ namespace Universidad.Models
     {
         public Estudiante()
         {
-            Calificaciones = new HashSet<Calificacione>();
             EstudiantesClases = new HashSet<EstudiantesClase>();
         }
 
@@ -17,7 +16,6 @@ namespace Universidad.Models
 
         public virtual Carrera IdCarreraNavigation { get; set; } = null!;
         public virtual Persona IdPersonaNavigation { get; set; } = null!;
-        public virtual ICollection<Calificacione> Calificaciones { get; set; }
         public virtual ICollection<EstudiantesClase> EstudiantesClases { get; set; }
     }
 }

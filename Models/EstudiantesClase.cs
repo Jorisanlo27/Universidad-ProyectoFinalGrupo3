@@ -1,6 +1,9 @@
-﻿namespace Universidad.Models
+﻿using System;
+using System.Collections.Generic;
+
+namespace Universidad.Models
 {
-	public partial class EstudiantesClase
+    public partial class EstudiantesClase
     {
         public int Id { get; set; }
         public int IdEstudiantes { get; set; }
