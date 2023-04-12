@@ -5,7 +5,29 @@
     ViewData["ActivePage"] = ManageNavPages.Index;
 }
 
-<h3>@ViewData["Title"]</h3>
+<h5 class="card-title">About</h5>
+
+@if (User.IsInRole("Admin"))
+{
+	<p class="small fst-italic">
+		A system administrator is an IT professional responsible for maintaining, configuring, and troubleshooting computer systems, servers, and networks. They ensure that the computer systems and networks are functioning properly and are secure from cyber-attacks or unauthorized access.
+	</p>
+}
+else if (User.IsInRole("Teacher"))
+{
+	<p class="small fst-italic">
+		A teacher, also known as a professor or instructor, is an education professional who teaches and guides university-level students in a specific academic field. University teachers work in higher education institutions such as universities, colleges, and community colleges and are experts in their field of study.
+	</p>
+}
+else if (User.IsInRole("Student"))
+{
+	<p class="small fst-italic">
+		A student is an individual who is enrolled in a higher education institution, such as a university, college, or community college, pursuing a degree or certificate program in a specific academic field. University students come from diverse backgrounds and are at various stages of their educational journey, ranging from freshman to graduate students.
+	</p>
+}
+
+<hr />
+
 <partial name="_StatusMessage" for="StatusMessage" />
 <div class="row">
     <div class="col-md-6">

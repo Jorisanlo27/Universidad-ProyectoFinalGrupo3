@@ -5,35 +5,28 @@
 <ul class="navbar-nav">
 	@if (SignInManager.IsSignedIn(User))
 	{
-		@*<li class="nav-item">
-	<a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity?.Name!</a>
-	</li>
-	<li class="nav-item">
-	<form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-	<button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-	</form>
-	</li>*@
 		<li class="nav-item dropdown pe-3">
 
 			<a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
 				<img src="~/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-				<span class="d-none d-md-block dropdown-toggle ps-2">@UserManager.GetUserNameAsync(User)</span>
-			</a><!-- End Profile Iamge Icon -->
+				<span class="d-none d-md-block dropdown-toggle ps-2">@User.Identity.Name</span>
+			</a>
 
 			<ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
 				<li class="dropdown-header">
 					<h6>@User.Identity?.Name</h6>
-					<span>Web Designer</span>
-				</li>
-				<li>
-					<hr class="dropdown-divider">
-				</li>
-
-				<li>
-					<a class="dropdown-item d-flex align-items-center" href="/Home/Profile">
-						<i class="bi bi-person"></i>
-						<span>My Profile</span>
-					</a>
+					@if (User.IsInRole("Admin"))
+					{
+						<span>Admin</span>
+					}
+					else if (User.IsInRole("Teacher"))
+					{
+						<span>Teacher</span>
+					}
+					else if (User.IsInRole("Student"))
+					{
+						<span>Student</span>
+					}
 				</li>
 				<li>
 					<hr class="dropdown-divider">
@@ -69,19 +62,14 @@
 				</li>
 
 				<li>
-					
+
 				</li>
 
-			</ul><!-- End Profile Dropdown Items -->
+			</ul>
 		</li>
-
-		<!-- End Profile Nav -->
 	}
 	else
 	{
-		@*    <li class="nav-item">
-	<a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
-	</li>*@
 		<li class="nav-item me-5">
 			<a class="btn btn-outline-primary" asp-area="Identity" asp-page="/Account/Login">Login</a>
 		</li>
