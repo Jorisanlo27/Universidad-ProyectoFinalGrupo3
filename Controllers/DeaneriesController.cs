@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +10,8 @@ using Universidad.Models;
 
 namespace Universidad.Controllers
 {
-	public class DeaneriesController : Controller
+    [Authorize]
+    public class DeaneriesController : Controller
 	{
 		private readonly UniversidadContext _context;
 

@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Universidad.Models;
 
 namespace Universidad.Controllers
 {
-	public class PeopleController : Controller
+    [Authorize]
+    public class PeopleController : Controller
     {
         private readonly UniversidadContext _context;
 

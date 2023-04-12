@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -7,92 +11,90 @@ using Universidad.Models;
 namespace Universidad.Controllers
 {
     [Authorize]
-    public class FacultiesController : Controller
+    public class CareersController : Controller
     {
         private readonly UniversidadContext _context;
 
-        public FacultiesController(UniversidadContext context)
+        public CareersController(UniversidadContext context)
         {
             _context = context;
         }
 
-        // GET: Areas
+        // GET: Carreras
         public async Task<IActionResult> Index()
         {
-            var universidadContext = _context.Areas
-                .Include(a => a.IdDepartamentoNavigation)
-                .Include(a => a.Carreras);
+            var universidadContext = _context.Carreras.Include(c => c.IdAreaNavigation);
             return View(await universidadContext.ToListAsync());
         }
 
-        // GET: Areas/Details/5
+        // GET: Carreras/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Areas == null)
+            if (id == null || _context.Carreras == null)
             {
                 return NotFound();
             }
 
-            var area = await _context.Areas
-                .Include(a => a.IdDepartamentoNavigation)
-                .FirstOrDefaultAsync(m => m.IdArea == id);
-            if (area == null)
+            var carrera = await _context.Carreras
+                .Include(c => c.IdAreaNavigation)
+                .FirstOrDefaultAsync(m => m.IdCarrera == id);
+            if (carrera == null)
             {
                 return NotFound();
             }
 
-            return View(area);
+            return View(carrera);
         }
 
-        // GET: Areas/Create
+        // GET: Carreras/Create
         public IActionResult Create()
         {
-            ViewData["IdDepartamento"] = new SelectList(_context.Departamentos, "IdDepartamento", "IdDepartamento");
+            ViewData["IdArea"] = new SelectList(_context.Areas, "IdArea", "IdArea");
             return View();
         }
 
-        // POST: Areas/Create
+        // POST: Carreras/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdArea,IdDepartamento,Nombre")] Area area)
+        public async Task<IActionResult> Create([Bind("IdCarrera,IdArea,Nombre,Descripcion")] Carrera carrera)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(area);
+                _context.Add(carrera);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdDepartamento"] = new SelectList(_context.Departamentos, "IdDepartamento", "IdDepartamento", area.IdDepartamento);
-            return View(area);
+            ViewData["IdArea"] = new SelectList(_context.Areas, "IdArea", "IdArea", carrera.IdArea);
+            return View(carrera);
         }
 
-        // GET: Areas/Edit/5
+        // GET: Carreras/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Areas == null)
+            if (id == null || _context.Carreras == null)
             {
                 return NotFound();
             }
 
-            var area = await _context.Areas.FindAsync(id);
-            if (area == null)
+            var carrera = await _context.Carreras.FindAsync(id);
+            if (carrera == null)
             {
                 return NotFound();
             }
-            ViewData["IdDepartamento"] = new SelectList(_context.Departamentos, "IdDepartamento", "IdDepartamento", area.IdDepartamento);
-            return View(area);
+            ViewData["IdArea"] = new SelectList(_context.Areas, "IdArea", "IdArea", carrera.IdArea);
+            return View(carrera);
         }
 
-        // POST: Areas/Edit/5
+        // POST: Carreras/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdArea,IdDepartamento,Nombre")] Area area)
+        public async Task<IActionResult> Edit(int id, [Bind("IdCarrera,IdArea,Nombre,Descripcion")] Carrera carrera)
         {
-            if (id != area.IdArea)
+            if (id != carrera.IdCarrera)
             {
                 return NotFound();
             }
@@ -101,12 +103,12 @@ namespace Universidad.Controllers
             {
                 try
                 {
-                    _context.Update(area);
+                    _context.Update(carrera);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AreaExists(area.IdArea))
+                    if (!CarreraExists(carrera.IdCarrera))
                     {
                         return NotFound();
                     }
@@ -117,51 +119,51 @@ namespace Universidad.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdDepartamento"] = new SelectList(_context.Departamentos, "IdDepartamento", "IdDepartamento", area.IdDepartamento);
-            return View(area);
+            ViewData["IdArea"] = new SelectList(_context.Areas, "IdArea", "IdArea", carrera.IdArea);
+            return View(carrera);
         }
 
-        // GET: Areas/Delete/5
+        // GET: Carreras/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Areas == null)
+            if (id == null || _context.Carreras == null)
             {
                 return NotFound();
             }
 
-            var area = await _context.Areas
-                .Include(a => a.IdDepartamentoNavigation)
-                .FirstOrDefaultAsync(m => m.IdArea == id);
-            if (area == null)
+            var carrera = await _context.Carreras
+                .Include(c => c.IdAreaNavigation)
+                .FirstOrDefaultAsync(m => m.IdCarrera == id);
+            if (carrera == null)
             {
                 return NotFound();
             }
 
-            return View(area);
+            return View(carrera);
         }
 
-        // POST: Areas/Delete/5
+        // POST: Carreras/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Areas == null)
+            if (_context.Carreras == null)
             {
-                return Problem("Entity set 'UniversidadContext.Areas'  is null.");
+                return Problem("Entity set 'UniversidadContext.Carreras'  is null.");
             }
-            var area = await _context.Areas.FindAsync(id);
-            if (area != null)
+            var carrera = await _context.Carreras.FindAsync(id);
+            if (carrera != null)
             {
-                _context.Areas.Remove(area);
+                _context.Carreras.Remove(carrera);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AreaExists(int id)
+        private bool CarreraExists(int id)
         {
-          return (_context.Areas?.Any(e => e.IdArea == id)).GetValueOrDefault();
+          return (_context.Carreras?.Any(e => e.IdCarrera == id)).GetValueOrDefault();
         }
     }
 }
