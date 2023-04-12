@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Numerics;
@@ -6,6 +7,7 @@ using Universidad.Models;
 
 namespace Universidad.Controllers
 {
+	[Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -88,20 +90,6 @@ namespace Universidad.Controllers
 
 			return Json(carreras);
 		}
-
-		//public JsonResult GetCareersNames()
-		//{
-		//	var carreras = _context.Carreras;
-
-		//	return Json(carreras);
-		//}
-
-		//public JsonResult GetTeachersByAreas()
-		//{
-		//	var carreras = _context.ProfesoresAreas;
-
-		//	return Json(carreras);
-		//}
 
 		public JsonResult GetTeachersByAreas()
 		{
